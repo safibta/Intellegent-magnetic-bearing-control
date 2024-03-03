@@ -1,0 +1,11 @@
+5:44 PM 11/4/2015 led is dim when LOW. Looks like arduino fault koz it stays dim even whn I remove HEs
+
+6:39 PM 11/4/2015 i am able to simulate led turingin on using ss sensors.
+
+next task if to model this usnig systemmodeler.
+
+read rpm
+
+thn I pring other HE sessor into the picture. 
+
+Then I compute the difference in rpm

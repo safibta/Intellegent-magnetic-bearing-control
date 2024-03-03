@@ -1,0 +1,16 @@
+model ModifiedNORwalaFlippie
+  Modelica.Blocks.Interfaces.BooleanOutput y annotation(Placement(visible = true, transformation(origin = {160, 10}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {111.713, 1.764}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Modelica.Blocks.Interfaces.BooleanInput u1 annotation(Placement(visible = true, transformation(origin = {-167.834, 65}, extent = {{-20, -20}, {20, 20}}, rotation = 0), iconTransformation(origin = {-120, 57.62}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
+  Modelica.Blocks.Logical.Nor nor annotation(Placement(visible = true, transformation(origin = {-27.561, 50}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Modelica.Blocks.Logical.Pre pre1(pre_u_start = true) annotation(Placement(visible = true, transformation(origin = {38.034, 50}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  ModifiedNOR modifiedNOR annotation(Placement(visible = true, transformation(origin = {-42.444, -35}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Modelica.Blocks.Sources.BooleanConstant booleanConstant(k = false) annotation(Placement(visible = true, transformation(origin = {-115, -62.839}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+equation
+  connect(modifiedNOR.y, y) annotation(Line(visible = true, origin = {95.529, -12.5}, points = {{-126.972, -22.5}, {31.251, -22.5}, {31.251, 22.5}, {64.471, 22.5}}, color = {255, 0, 255}));
+  connect(booleanConstant.y, modifiedNOR.u2) annotation(Line(visible = true, origin = {-68.333, -52.919}, points = {{-35.667, -9.919}, {10.889, -9.919}, {10.889, 9.919}, {13.889, 9.919}}, color = {255, 0, 255}));
+  connect(modifiedNOR.y, nor.u2) annotation(Line(visible = true, origin = {-28.501, 9.683}, points = {{-2.943, -44.683}, {38.501, -44.683}, {38.501, 12.366}, {-31.499, 12.366}, {-31.499, 32.317}, {-11.06, 32.317}}, color = {255, 0, 255}));
+  connect(pre1.y, modifiedNOR.u1) annotation(Line(visible = true, origin = {-7.443, 0.59}, points = {{56.477, 49.41}, {59.477, 49.41}, {59.477, -13.819}, {-64.215, -13.819}, {-64.215, -35.59}, {-47.001, -35.59}}, color = {255, 0, 255}));
+  connect(nor.y, pre1.u) annotation(Line(visible = true, origin = {4.736, 50}, points = {{-21.297, 0}, {21.297, 0}}, color = {255, 0, 255}));
+  connect(u1, nor.u1) annotation(Line(visible = true, origin = {-99.349, 57.5}, points = {{-68.485, 7.5}, {4.349, 7.5}, {4.349, -7.5}, {59.788, -7.5}}, color = {255, 0, 255}));
+  annotation(Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Rectangle(visible = true, fillColor = {0, 255, 255}, fillPattern = FillPattern.Solid, extent = {{-100, -100}, {100, 100}}), Text(visible = true, origin = {1.782, 3.822}, extent = {{-78.218, -62.03}, {78.218, 62.03}}, textString = "flipflop")}), Diagram(coordinateSystem(extent = {{-148.5, -105}, {148.5, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
+end ModifiedNORwalaFlippie;

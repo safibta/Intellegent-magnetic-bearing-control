@@ -1,0 +1,34 @@
+model motor_testing
+  ModelPlug.Pins.AnalogInput analogInput(Pin = 16, MinValue = 0, MaxValue = 1) annotation(Placement(visible = true, transformation(origin = {-77.17, -5}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  ModelPlug.Boards.Arduino arduino(Port = "COM5") annotation(Placement(visible = true, transformation(origin = {-25, 35}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  ModelPlug.Pins.AnalogOutput analogOutput(Pin = 9, MinValue = 0, MaxValue = 1) annotation(Placement(visible = true, transformation(origin = {30, 20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Modelica.Blocks.Sources.BooleanConstant booleanConstant annotation(Placement(visible = true, transformation(origin = {-125, -50}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  ModelPlug.Pins.DigitalOutput digitalOutput(Pin = 8) annotation(Placement(visible = true, transformation(origin = {-35, 71.658}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  ModelPlug.Pins.DigitalOutput digitalOutput1(Pin = 7) annotation(Placement(visible = true, transformation(origin = {55, 81.58}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Modelica.Blocks.Logical.Not not1 annotation(Placement(visible = true, transformation(origin = {-25, -40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  ModelPlug.Pins.AnalogInput analogInput1(Pin = 15, MinValue = 0, MaxValue = 1) annotation(Placement(visible = true, transformation(origin = {37.615, -73.468}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  ModelPlug.Pins.AnalogInput analogInput2(Pin = 14, MinValue = 0, MaxValue = 1) annotation(Placement(visible = true, transformation(origin = {60, -36.668}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Modelica.Blocks.Logical.GreaterEqualThreshold greaterEqualThreshold(threshold = .52) annotation(Placement(visible = true, transformation(origin = {92.604, -38.034}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Modelica.Blocks.Logical.GreaterEqualThreshold greaterEqualThreshold1(threshold = .508) annotation(Placement(visible = true, transformation(origin = {82.263, -71.79}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  PulseToRPM pulseToRPM annotation(Placement(visible = true, transformation(origin = {132.843, -35}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  PulseToRPM pulseToRPM1 annotation(Placement(visible = true, transformation(origin = {125, -76.619}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Modelica.Blocks.Math.Add add(k2 = -1) annotation(Placement(visible = true, transformation(origin = {178.043, -63.39}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+equation
+  connect(pulseToRPM1.rpm, add.u2) annotation(Line(visible = true, origin = {157.032, -73.004}, points = {{-21.032, -3.615}, {6.011, -3.615}, {6.011, 3.615}, {9.011, 3.615}}, color = {0, 0, 127}));
+  connect(pulseToRPM.rpm, add.u1) annotation(Line(visible = true, origin = {158.993, -46.195}, points = {{-15.15, 11.195}, {4.05, 11.195}, {4.05, -11.195}, {7.05, -11.195}}, color = {0, 0, 127}));
+  connect(greaterEqualThreshold1.y, pulseToRPM1.u) annotation(Line(visible = true, origin = {106.566, -74.204}, points = {{-13.303, 2.415}, {3.434, 2.415}, {3.434, -2.415}, {6.434, -2.415}}, color = {255, 0, 255}));
+  connect(greaterEqualThreshold.y, pulseToRPM.u) annotation(Line(visible = true, origin = {115.033, -36.517}, points = {{-11.429, -1.517}, {2.81, -1.517}, {2.81, 1.517}, {5.81, 1.517}}, color = {255, 0, 255}));
+  connect(analogInput2.y, greaterEqualThreshold.u) annotation(Line(visible = true, origin = {76.453, -37.351}, points = {{-6.453, 0.683}, {1.151, 0.683}, {1.151, -0.683}, {4.151, -0.683}}, color = {0, 0, 127}));
+  connect(analogInput1.y, greaterEqualThreshold1.u) annotation(Line(visible = true, origin = {63.101, -72.629}, points = {{-15.486, -0.839}, {4.162, -0.839}, {4.162, 0.839}, {7.162, 0.839}}, color = {0, 0, 127}));
+  connect(analogInput2.pinConnector, arduino.boardConnector) annotation(Line(visible = true, origin = {21.692, 4.459}, points = {{28.308, -41.128}, {18.308, 2.418}, {18.308, -17.689}, {-46.692, -17.689}, {-46.692, 30.541}}));
+  connect(analogInput1.pinConnector, arduino.boardConnector) annotation(Line(visible = true, origin = {12.566, -1.667}, points = {{15.049, -71.801}, {-37.566, -18.333}, {-37.566, 36.667}}));
+  connect(not1.y, digitalOutput1.u) annotation(Line(visible = true, origin = {18.774, 20.79}, points = {{-32.774, -60.79}, {3.274, -60.79}, {3.274, 60.79}, {26.226, 60.79}}, color = {255, 0, 255}));
+  connect(booleanConstant.y, not1.u) annotation(Line(visible = true, origin = {-57.75, -45}, points = {{-56.25, -5}, {17.75, -5}, {17.75, 5}, {20.75, 5}}, color = {255, 0, 255}));
+  connect(digitalOutput.u, booleanConstant.y) annotation(Line(visible = true, origin = {-94.75, 5.829}, points = {{49.75, 65.829}, {-30.25, 65.829}, {-30.25, -65.829}, {-19.25, -55.829}}, color = {255, 0, 255}));
+  connect(digitalOutput1.pinConnector, arduino.boardConnector) annotation(Line(visible = true, origin = {44.006, 58.29}, points = {{20.994, 23.29}, {24.006, 23.29}, {24.006, -23.29}, {-69.006, -23.29}}));
+  connect(digitalOutput.pinConnector, arduino.boardConnector) annotation(Line(visible = true, origin = {-23.795, 54.863}, points = {{-1.205, 16.795}, {1.808, 16.795}, {1.808, -6.863}, {-1.205, -6.863}, {-1.205, -19.863}}));
+  connect(analogInput.y, analogOutput.u) annotation(Line(visible = true, origin = {-3.299, 7.5}, points = {{-63.871, -12.5}, {20.286, -12.5}, {20.286, 12.5}, {23.299, 12.5}}, color = {0, 0, 127}));
+  connect(arduino.boardConnector, analogOutput.pinConnector) annotation(Line(visible = true, origin = {25.256, 27.5}, points = {{-50.256, 7.5}, {17.756, 7.5}, {17.756, -7.5}, {14.744, -7.5}}));
+  connect(analogInput.pinConnector, arduino.boardConnector) annotation(Line(visible = true, origin = {-73.134, 15}, points = {{-14.036, -20}, {-17.049, -20}, {-17.049, 20}, {48.134, 20}}));
+  annotation(Diagram(coordinateSystem(extent = {{-148.5, -105}, {148.5, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
+end motor_testing;

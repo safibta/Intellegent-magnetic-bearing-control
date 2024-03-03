@@ -1,0 +1,14 @@
+model flips
+  nottimt nottimt1 annotation(Placement(visible = true, transformation(origin = {5, -30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Modelica.Blocks.Logical.Nor nor annotation(Placement(visible = true, transformation(origin = {5, 15}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Modelica.Blocks.Interfaces.BooleanInput u annotation(Placement(visible = true, transformation(origin = {-163.307, 45}, extent = {{-20, -20}, {20, 20}}, rotation = 0), iconTransformation(origin = {-107.744, 42.857}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
+  Modelica.Blocks.Interfaces.BooleanOutput y annotation(Placement(visible = true, transformation(origin = {160, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {107.744, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Modelica.Blocks.Interfaces.BooleanInput u1 annotation(Placement(visible = true, transformation(origin = {-165, -55}, extent = {{-20, -20}, {20, 20}}, rotation = 0), iconTransformation(origin = {-105.418, -52.381}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
+equation
+  connect(nottimt1.y, y) annotation(Line(visible = true, origin = {107.39, -14.647}, points = {{-91.39, -14.647}, {19.39, -14.647}, {19.39, 14.647}, {52.61, 14.647}}, color = {255, 0, 255}));
+  connect(nottimt1.y, nor.u2) annotation(Line(visible = true, origin = {-0.167, -10.765}, points = {{16.167, -18.53}, {35.167, -18.53}, {35.167, 0.765}, {-39.833, 0.765}, {-39.833, 17.765}, {-6.833, 17.765}}, color = {255, 0, 255}));
+  connect(nottimt1.u2, u1) annotation(Line(visible = true, origin = {-81.309, -45.175}, points = {{74.309, 9.825}, {4.691, 9.825}, {4.691, -9.825}, {-83.691, -9.825}}, color = {255, 0, 255}));
+  connect(nor.y, nottimt1.u1) annotation(Line(visible = true, origin = {19.258, -3.218}, points = {{-3.258, 18.218}, {59.015, 18.218}, {59.015, 1.564}, {-44.258, 1.564}, {-44.258, -19.782}, {-26.258, -19.782}}, color = {255, 0, 255}));
+  connect(u, nor.u1) annotation(Line(visible = true, origin = {-47.577, 30}, points = {{-115.73, 15}, {37.577, 15}, {37.577, -15}, {40.577, -15}}, color = {255, 0, 255}));
+  annotation(Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Rectangle(visible = true, origin = {-1.153, 0.588}, fillColor = {0, 255, 0}, fillPattern = FillPattern.Solid, extent = {{-101.153, -104.069}, {101.153, 104.069}}), Text(visible = true, origin = {6.468, 4.704}, extent = {{-71.144, -61.736}, {71.144, 61.736}}, textString = "floop")}), Diagram(coordinateSystem(extent = {{-148.5, -105}, {148.5, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
+end flips;
